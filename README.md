@@ -27,6 +27,31 @@ graph TD;
 
 > **Note**: This module requires **NGINX version 1.28.0** or later. Earlier versions will cause module version mismatch errors.
 
+### Option 1: Using Docker Images (Recommended)
+
+The easiest way to deploy the L402 Nginx module is by using our official Docker images:
+
+```bash
+# Pull the image
+docker pull ghcr.io/dhananjaypurohit/ngx_l402:latest
+
+# Run with environment variables
+docker run -d \
+  --name l402-nginx \
+  -p 8000:8000 \
+  -e LN_CLIENT_TYPE=LNURL \
+  -e LNURL_ADDRESS=https://your-lnurl-server.com \
+  -e ROOT_KEY=your-root-key \
+  ghcr.io/dhananjaypurohit/ngx_l402:latest
+```
+
+For specific versions:
+```bash
+docker pull ghcr.io/dhananjaypurohit/ngx_l402:v1.1.2
+```
+
+### Option 2: Manual Installation
+
 1. Download the module file `libngx_l402_lib.so` from the [latest release](https://github.com/DhananjayPurohit/ngx_l402/releases/latest) and copy it to your Nginx modules directory (typically `/etc/nginx/modules/`)
 
 2. Enable the module in your nginx.conf:
